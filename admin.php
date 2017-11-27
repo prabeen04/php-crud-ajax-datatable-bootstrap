@@ -12,16 +12,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Logistic Service</title>
-	<script src="js/jquery.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.css" />
-	<script src="js/jquery.dataTables.min.js"></script>
-	<script src="js/dataTables.bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-	<script src="js/bootstrap.js"></script>
-	<script src="js/script.js"></script>
-
 </head>
 
 <body>
@@ -43,70 +36,69 @@ require_once ('navbar.php');
 				<div class="row">
 					<label class="control-label col-md-2">Way Bill No</label>
 					<div class="col-md-2">
-						<input type="text" name="way_bill_no" id="way_bill_no" class="form-control" />
+						<input type="text" name="way_bill_no" id="way_bill_no" class="form-control" required/>
 
 					</div>
 					<label class="control-label  col-md-2">Client's Name</label>
 					<div class="col-md-2">
-						<input type="text" name="client_name" id="client_name" class="form-control" />
+						<input type="text" name="client_name" id="client_name" class="form-control" required/>
 					</div>
 					<label class="control-label col-md-2">Despatch Date</label>
 					<div class="col-md-2">
-						<input type="date" name="despatch_date" id="despatch_date" class="form-control" />
+						<input type="date" name="despatch_date" id="despatch_date" class="form-control" required/>
 					</div>
 					<label class="control-label col-md-2">Origin</label>
 					<div class="col-md-2">
-						<select name="origin_detail" id="origin_detail" class="form-control">
-								<option value="bbsr">bbsr</option>
+						<select name="origin_detail" id="origin_detail" class="form-control" required>
+								<!-- <option value="bbsr">bbsr</option>
 								<option value="cuttack">cuttack</option>
 								<option value="berhampur">berhampur</option>
 								<option value="chhatrapur">chhatrapur</option>
-								<option value="khordha">khordha</option>
+								<option value="khordha">khordha</option> -->
 							</select>
 					</div>
 
 					<label class="control-label col-md-2">Via</label>
 					<div class="col-md-2">
-						<select name="via_detail" id="via_detail" class="form-control">
-								<option value="bbsr">bbsr</option>
+						<select name="via_detail" id="via_detail" class="form-control" required>
+								<!-- <option value="bbsr">bbsr</option>
 								<option value="cuttack">cuttack</option>
 								<option value="berhampur">berhampur</option>
 								<option value="chhatrapur">chhatrapur</option>
-								<option value="khordha">khordha</option>
+								<option value="khordha">khordha</option> -->
 							</select>
 					</div>
 
 					<label class="control-label col-md-2">Destination</label>
 					<div class="col-md-2">
-						<select name="destination_detail" id="destination_detail" class="form-control">
-								<option value="bbsr">bbsr</option>
+						<select name="destination_detail" id="destination_detail" class="form-control" required>
+								<!-- <option value="bbsr">bbsr</option>
 								<option value="cuttack">cuttack</option>
 								<option value="berhampur">berhampur</option>
 								<option value="chhatrapur">chhatrapur</option>
-								<option value="khordha">khordha</option>
+								<option value="khordha">khordha</option> -->
 							</select>
 					</div>
 
 					<label class="control-label col-md-2">Address
 															</label>
 					<div class="col-md-2">
-						<textarea name="address" id="address" cols="30" rows="10" class="form-control"></textarea>
+						<textarea name="address" id="address" cols="30" rows="10" class="form-control"required></textarea>
 					</div>
 					<label class="control-label col-md-2">status</label>
 					<div class="col-md-2">
-						<select name="status" id="status" class="form-control">
-								<option value="good">good</option>
-								<option value="bad">bad</option>
-								<option value="average">average</option>
+						<select name="status" id="status" class="form-control" required>
+								<option value="delivered">Delivered</option>
+								<option value="undelivered">Undelivered</option>
 							</select>
 					</div>
 					<label class="control-label col-md-2">Delivery Date</label>
 					<div class="col-md-2">
-						<input type="date" name="delivery_date" id="delivery_date" class="form-control" />
+						<input type="date" name="delivery_date" id="delivery_date" class="form-control" required/>
 					</div>
 					<label class="control-label col-md-2">Remarks</label>
 					<div class="col-md-2">
-						<input type="text" name="remarks" id="remarks" class="form-control">
+						<input type="text" name="remarks" id="remarks" class="form-control" required>
 					</div><br>
 					<div style="display: block">
 						<label class="control-label col-md-2">Select a File</label>
@@ -236,6 +228,42 @@ require_once ('navbar.php');
 		<!-- Way bill table end -->
 	</div>
 
+
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script src="js/dataTables.bootstrap.min.js"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<script src="js/bootstrap.js"></script>
+	<script src="js/script.js"></script>
+
+	<script>
+
+$(document).ready(function(){
+			$.ajax({
+                url: "getbranch.php",
+                method: "GET",
+                success: function (data) {
+					console.log(data);
+					$.each(JSON.parse(data), function(key, value) {   
+						$('#origin_detail')
+							.append($("<option></option>")
+										.attr("value",value.city_name)
+										.text(value.city_name)); 
+						$('#via_detail')
+							.append($("<option></option>")
+										.attr("value",value.city_name)
+										.text(value.city_name)); 
+						$('#destination_detail')
+							.append($("<option></option>")
+										.attr("value",value.city_name)
+										.text(value.city_name)); 				
+					});                   
+                }
+            });
+
+		});
+	
+</script>
 
 
 </body>

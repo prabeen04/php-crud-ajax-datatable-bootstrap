@@ -16,6 +16,17 @@ $(document).ready(function () {
 		$('#operation').val("Add");
 		$('#way_bill_div').show();
 		$('#user_uploaded_image').html('');
+		$("input#way_bill_no").prop('readonly', false);
+		$("input#client_name").prop('readonly', false);
+		$("input#despatch_date").prop('readonly', false);
+		$("select#origin_detail").prop('disabled', false);
+		$("select#via_detail").prop('disabled', false);
+		$("select#destination_detail").prop('disabled', false);
+		$("textarea#address").prop('readonly', false);
+		$("input#delivery_date").prop('readonly', false);
+		$("input#remarks").prop('readonly', false);
+		$("input#user_uploaded_image").prop('readonly', false);
+		
 	});
 
 	var dataTable = $('#user_data').DataTable({
@@ -36,6 +47,7 @@ $(document).ready(function () {
 	});
 // Adding way bill script
 	$(document).on('submit', '#way_bill_form', function (event) {
+
 		event.preventDefault();
 		var way_bill_no = $('#way_bill_no').val();
 		var client_name = $('#client_name').val();
@@ -86,12 +98,22 @@ $(document).ready(function () {
 			dataType: "json",
 			success: function (data) {
 				console.log(data.via_detail);
-
+				$("input#way_bill_no").prop('readonly', true);
+				$("input#client_name").prop('readonly', true);
+				$("input#despatch_date").prop('readonly', true);
+				$("select#origin_detail").prop('disabled', true);
+				$("select#via_detail").prop('disabled', true);
+				$("select#destination_detail").prop('disabled', true);
+				$("textarea#address").prop('readonly', true);
+				$("input#delivery_date").prop('readonly', true);
+				$("input#remarks").prop('readonly', true);
+				$("input#user_uploaded_image").prop('readonly', true);
 				$('#way_bill_no').val(data.way_bill_no);
 				// $('#way_bill_no').attr(disabled, "disabled");
 				$('#client_name').val(data.client_name);
 				$('#despatch_date').val(data.despatch_date);
 				$('#origin_detail').val(data.origin_detail);
+				$('#origin_detail1').val(data.origin_detail);
 				$('#via_detail').val(data.via_detail);
 				$('#destination_detail').val(data.destination_detail);
 				$('#address').val(data.address);
@@ -101,6 +123,7 @@ $(document).ready(function () {
 				$('.modal-title').text("Edit User");
 				$('#user_id').val(user_id);
 				$('#user_uploaded_image').html(data.user_image);
+
 				$('#action').val("Update Data");
 				$('#operation').val("Edit");
 				$('.add-form').show();

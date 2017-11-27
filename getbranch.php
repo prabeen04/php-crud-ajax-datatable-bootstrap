@@ -38,7 +38,7 @@ foreach($result as $row)
 	// {
 	// 	$image = '';
     // }
-    echo json_encode($row['city_name']);
+    //echo json_encode($row['city_name']);
 	//$sub_array = array();
 	//$sub_array[] = $image;
 	//$sub_array[] = $row["way_bill_no"];
@@ -61,7 +61,7 @@ foreach($result as $row)
 // 	// "recordsFiltered"	=>	get_total_all_records(),
 // 	"data"				=>	$data
 // );
-//  echo json_encode($output);
+  echo json_encode($result);
 // echo "<pre>";
 //print_r($output);
 ?>

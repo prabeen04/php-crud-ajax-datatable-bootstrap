@@ -5,7 +5,7 @@ $query = '';
 $output = array();
 $query .= "SELECT * FROM way_bill ";
 if(isset($_POST["way_bill_no"])){
-    $query .= 'WHERE way_bill_no LIKE "%'.$_POST["way_bill_no"].'%" ';  
+    $query .= 'WHERE way_bill_no = "'.$_POST["way_bill_no"].'" ';  
 }
 // if(isset($_POST["search"]["value"]))
 // {

@@ -17,11 +17,12 @@ session_start();
 </head>
 
 <body>
+<div id="wrapper">
 	<?php require_once "navbar.php";?>
 	<!-- Static navbar -->
 	<div class="container ">
 		<div class="well shadow">
-			<h1 class="text-center">Track Your Order</h1>
+			<h2 class="text-center">Track Your Order</h2>
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<input type="text" name="way_bill_no" id="way_bill_no" class="form-control" required/>
@@ -31,8 +32,14 @@ session_start();
 				</div>
 			</div>
 		</div>	
-			<div class="row" style="padding: 20px;">
-				<div class="shadow">
+		<div id="no-record" class="col-md-12 text-center" style="display: none;">
+			<div class="well">
+				<span style=" color: red; font-size: 30px;">No Record Found</span>
+			</div>
+		</div>
+			<div id="result-div" class="row" style="padding: 20px;display: none;">
+				<div class="shadow" id="result-wrapper">
+				
 				<div class="col-md-3 ">
 						<label class="control-label">Way Bill No</label> &nbsp;<span class="result-text" id="way_bill"></span>
 				</div>
@@ -69,7 +76,7 @@ session_start();
 			</div>
 		</div>
 	</div>
-
+	</div>
 
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
@@ -80,7 +87,25 @@ session_start();
 		$("body").on("contextmenu", "img", function (e) {
 			return false;
 		});
-
+	$(document).ready(function(){
+		$('#result-div').hide();
+		// if ($('#way_bill').is(':empty')){
+		// //do something
+		// 	$('#result-div').show();
+		// }
+		// else{
+		// 	$('#result-div').show();
+		// }
+		// if($('#way_bill').html().length > 0){
+		// //console.log($('#way_bill').text());	
+		// //alert('empty div');
+		// 	$('#result-div').show();
+		// }
+		// else if($('#way_bill').text().length != 0){
+		// 	$('#result-div').show();
+		// }
+	});	
+	
 	</script>
 
 </body>

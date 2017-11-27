@@ -14,12 +14,14 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (data) {
                     console.log(data);
-                    $('#image').html('<img src="upload/'+ data.attachments + '" alt="image">');
+                    $('#no-record').hide();  
+                    $('#result-div').show();
+                    $('#image').html('<img src="upload/'+ data.attachments + '" alt="image" class="img img-thumbnail">');
                     $('#way_bill').html(data.way_bill_no);
                     $('#client_name').html(data.client_name);
                     $('#despatch_date').html(data.despatch_date);
                     $('#origin_detail').html(data.origin_detail);
-                    $('#via_detail').html(data.via_detail);
+                    $('#via_detail').html(data.via_detail);  
                     $('#destination_detail').html(data.destination_detail);
                     $('#address').html(data.address);
                     $('#status').html(data.status);
@@ -34,7 +36,12 @@ $(document).ready(function () {
                     // $('#userModal').modal('show');
                     // $("html, body").animate({ scrollTop: 0 }, "slow");
                     // return false;
-                }
+                },
+            error: function(){
+                $('#result-div').hide();                
+                $('#no-record').show();                
+                //alert('no record found' );
+            }    
             })
         });
     

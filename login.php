@@ -43,7 +43,7 @@ try
                }  
                else  
                {  
-                    $message = '<label>Wrong Data</label>';  
+                    $message = '<label>Incorrect Username or Password</label>';  
                }  
           }  
      }  
@@ -53,41 +53,55 @@ catch(PDOException $error)
      $message = $error->getMessage();  
 }  
 ?>
-<!DOCTYPE html>  
-<html>  
-     <head>  
-          <title>Webslesson Tutorial | PHP Login Script using PDO</title>  
-          <link rel="stylesheet" href="css/bootstrap.css" />
-          <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
-          <link rel="stylesheet" href="css/style.css" />
-          <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-     </head>  
-     <body>  
-          <br />  
-          <div class="container" style="width:500px;">  
-               <?php  
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Logistic Service</title> 
+ <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="login">
+
+    <div class="container">
+      <?php  
                if(isset($message))  
                {  
-                    echo '<label class="text-danger">'.$message.'</label>';  
+                    echo '<label class="text-danger text-center">'.$message.'</label>';  
                }  
-               ?>  
-               <h3 align="">PHP Login Script using PDO</h3><br />  
-               <form method="post">  
-                    <label>Username</label>  
-                    <input type="text" name="username" class="form-control" />  
-                    <br />  
-                    <label>Password</label>  
-                    <input type="password" name="password" class="form-control" />  
-                    <br />  
-                    <input type="submit" name="login" class="btn btn-info" value="Login" />  
-               </form>  
-          </div>  
-          <br />  
-          <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/jquery.dataTables.min.js"></script>
-	<script src="js/dataTables.bootstrap.min.js"></script>
-	<script src="js/script1.js"></script>
+               ?>
+      <!-- <div class="row"> -->
+        <div class="col-md-4 col-md-offset-4 col-md-4 col-sm-offset-2 col-xs-12"  style="background: #fff; padding:0 30px 30px 30px;">
+          <h3 align="">Login to your Account</h3>
+          <form method="post">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" />
+            <br />
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" />
+            <br />
+            <input type="submit" name="login" class="btn btn-info" value="Login" />
+          </form>
+        </div>
+      <!-- </div> -->
 
-     </body>  
-</html>  
+    </div>
+
+  </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/dataTables.bootstrap.min.js"></script>
+  <script src="js/script1.js"></script>
+
+</body>
+
+</html>
